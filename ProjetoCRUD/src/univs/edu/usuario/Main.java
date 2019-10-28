@@ -16,10 +16,8 @@ public class Main {
         UsuarioDAO dao = new UsuarioDAO();
         
         usuario = dao.pesquisar(1);
-        usuario.setLogin("admin2");
-        usuario.setSenha("TripaChico");
         
-        dao.editar(usuario);
+        dao.excluir(usuario);
 
     }
 }
