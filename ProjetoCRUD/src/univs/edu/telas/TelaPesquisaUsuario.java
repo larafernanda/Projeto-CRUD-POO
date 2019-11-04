@@ -5,6 +5,7 @@
  */
 package univs.edu.telas;
 
+import javax.swing.JOptionPane;
 import univs.edu.usuario.Usuario;
 import univs.edu.usuario.UsuarioDAO;
 import univs.edu.usuario.UsuarioTableModel;
@@ -17,7 +18,7 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
 
     Usuario usuario = new Usuario();
     UsuarioDAO dao = new UsuarioDAO();
-   
+
     
     public TelaPesquisaUsuario() {
         initComponents();
@@ -99,6 +100,11 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
         });
 
         jButton4.setText("Editar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Voltar");
 
@@ -163,7 +169,34 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        int linha = tabelaUsuario.getSelectedRow();
+        if(linha == -1) { 
+            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
+        }else if(JOptionPane.showConfirmDialog(null, "Deseja realmente" + " excluir este usuário?", "Excluir usuário", 
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            usuario = dao.pesquisar((int)tabelaUsuario.getValueAt(linha, 0));
+            dao.excluir(usuario);
+            atualizarTabela();
+            JOptionPane.showMessageDialog(null, "Usuário excluído!");
+            
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int linha = tabelaUsuario.getSelectedRow();
+        if(linha == -1) { 
+            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
+        }else{
+            usuario = dao.pesquisar((int)tabelaUsuario.getValueAt(linha, 0));
+            TelaUsuario tela = new TelaUsuario();
+            tela.usuario = usuario;
+            tela.preencherUsuario();
+            tela.setVisible(true);
+            dispose();
+            
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
