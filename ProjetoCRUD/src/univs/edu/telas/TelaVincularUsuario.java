@@ -19,10 +19,13 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
 
     Usuario usuario = new Usuario();
     UsuarioDAO dao = new UsuarioDAO();
+    TelaFuncionario tela;
 
     
-    public TelaVincularUsuario() {
+    public TelaVincularUsuario(TelaFuncionario tela) {
         initComponents();
+        this.tela = tela;
+        tela.setVisible(false);
         atualizarTabela();
     }
     
@@ -48,14 +51,10 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
         tfLogin = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        tfLogin1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaUsuario = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        btSelecionar = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
         jLabel3.setText("Login:");
@@ -71,18 +70,7 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 14)); // NOI18N
-        jLabel2.setText("Pesquisa Usuário");
-
-        jLabel4.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
-        jLabel4.setText("Login");
-
-        tfLogin1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLogin1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Pesquisar");
+        jLabel2.setText("Vincular Usuário");
 
         tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,23 +83,26 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaUsuario);
 
-        jButton3.setText("Excluir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setText("Voltar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Editar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btSelecionar.setText("Selecionar");
+        btSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btSelecionarActionPerformed(evt);
             }
         });
-
-        jButton5.setText("Voltar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,22 +114,13 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
                         .addGap(120, 120, 120)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
-                                .addComponent(jButton1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
-                                .addGap(31, 31, 31)
-                                .addComponent(jButton4)
-                                .addGap(25, 25, 25)))))
+                        .addGap(109, 109, 109)
+                        .addComponent(jButton6)
+                        .addGap(31, 31, 31)
+                        .addComponent(btSelecionar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -147,18 +129,12 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(btSelecionar)
+                    .addComponent(jButton6))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,40 +144,28 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLoginActionPerformed
 
-    private void tfLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLogin1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfLogin1ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        int linha = tabelaUsuario.getSelectedRow();
-        if(linha == -1) { 
-            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
-        }else if(JOptionPane.showConfirmDialog(null, "Deseja realmente" + " excluir este usuário?", "Excluir usuário", 
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            usuario = dao.pesquisar((int)tabelaUsuario.getValueAt(linha, 0));
-            dao.excluir(usuario);
-            atualizarTabela();
-            JOptionPane.showMessageDialog(null, "Usuário excluído!");
-            
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+    private void btSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarActionPerformed
         int linha = tabelaUsuario.getSelectedRow();
         if(linha == -1) { 
             JOptionPane.showMessageDialog(null, "Selecione uma linha!");
         }else{
-            usuario = dao.pesquisar((int)tabelaUsuario.getValueAt(linha, 0));
-            TelaUsuario tela = new TelaUsuario();
-            tela.usuario = usuario;
-            tela.preencherUsuario();
+            usuario = dao.pesquisar( (int) tabelaUsuario.getValueAt(linha, 0));
+            tela.funcionario.setUsuario(usuario);
             tela.setVisible(true);
             dispose();
-            
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btSelecionarActionPerformed
+
+    private void tabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuarioMouseClicked
+        if(evt.getClickCount() == 2) {
+            btSelecionarActionPerformed(null);
+        }
+    }//GEN-LAST:event_tabelaUsuarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -234,23 +198,19 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaVincularUsuario().setVisible(true);
+                new TelaVincularUsuario(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btSelecionar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaUsuario;
     private javax.swing.JTextField tfLogin;
-    private javax.swing.JTextField tfLogin1;
     // End of variables declaration//GEN-END:variables
 }
