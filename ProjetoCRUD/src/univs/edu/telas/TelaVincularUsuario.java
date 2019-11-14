@@ -155,7 +155,7 @@ public class TelaVincularUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma linha!");
         }else{
             usuario = dao.pesquisar( (int) tabelaUsuario.getValueAt(linha, 0));
-            tela.funcionario.setUsuario(usuario);
+            tela.carregarUsuario(usuario);
             tela.setVisible(true);
             dispose();
         }

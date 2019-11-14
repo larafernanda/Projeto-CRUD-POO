@@ -5,6 +5,7 @@
  */
 package univs.edu.telas;
 
+import javax.swing.JOptionPane;
 import univs.edu.funcionario.Funcionario;
 import univs.edu.funcionario.FuncionarioDAO;
 import univs.edu.usuario.Usuario;
@@ -27,10 +28,18 @@ public class TelaFuncionario extends javax.swing.JFrame {
     public void limparCampos() { 
         funcionario = new Funcionario();
         tfNome.setText("");
+        tfCPF.setText("");
         tfSalario.setText("");
         tfUsuario.setText("");
-        tfCPF.setText("");
-        tfCargo.setSelectedItem("Selecione");
+        jcCargo.setSelectedItem("Selecione");
+    }
+    
+    public void preencherFuncionario(){
+        tfNome.setText(funcionario.getNomeFuncionario());
+        tfCPF.setText(funcionario.getCpf());
+        tfSalario.setText(String.valueOf(funcionario.getSalario()));
+        tfUsuario.setText(funcionario.getUsuario().getLogin());
+        jcCargo.setSelectedItem(funcionario.getCargo());
     }
     
     public void carregarUsuario(Usuario usuario){
@@ -53,16 +62,16 @@ public class TelaFuncionario extends javax.swing.JFrame {
         tfLogin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        tfNome = new javax.swing.JLabel();
-        tfLogin1 = new javax.swing.JTextField();
-        tfCPF = new javax.swing.JLabel();
-        tfLogin2 = new javax.swing.JTextField();
-        tfSalario = new javax.swing.JLabel();
-        tfLogin3 = new javax.swing.JTextField();
-        cargo = new javax.swing.JLabel();
-        tfCargo = new javax.swing.JComboBox<>();
-        tfUsuario = new javax.swing.JLabel();
-        tfLogin4 = new javax.swing.JTextField();
+        a = new javax.swing.JLabel();
+        tfNome = new javax.swing.JTextField();
+        b = new javax.swing.JLabel();
+        tfCPF = new javax.swing.JTextField();
+        c = new javax.swing.JLabel();
+        tfSalario = new javax.swing.JTextField();
+        d = new javax.swing.JLabel();
+        jcCargo = new javax.swing.JComboBox<>();
+        e = new javax.swing.JLabel();
+        tfUsuario = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -85,50 +94,50 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/univs/edu/imagens/usuario-40.png"))); // NOI18N
 
-        tfNome.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
-        tfNome.setText("Nome:");
+        a.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        a.setText("Nome:");
 
-        tfLogin1.addActionListener(new java.awt.event.ActionListener() {
+        tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLogin1ActionPerformed(evt);
+                tfNomeActionPerformed(evt);
             }
         });
 
-        tfCPF.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
-        tfCPF.setText("CPF:");
+        b.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        b.setText("CPF:");
 
-        tfLogin2.addActionListener(new java.awt.event.ActionListener() {
+        tfCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLogin2ActionPerformed(evt);
+                tfCPFActionPerformed(evt);
             }
         });
 
-        tfSalario.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
-        tfSalario.setText("Salário:");
+        c.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        c.setText("Salário:");
 
-        tfLogin3.addActionListener(new java.awt.event.ActionListener() {
+        tfSalario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLogin3ActionPerformed(evt);
+                tfSalarioActionPerformed(evt);
             }
         });
 
-        cargo.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
-        cargo.setText("Cargo:");
+        d.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        d.setText("Cargo:");
 
-        tfCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Recursos Humanos", "Item 3", "Item 4" }));
-        tfCargo.addActionListener(new java.awt.event.ActionListener() {
+        jcCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Administrador", "Recursos Humanos", "Item 4" }));
+        jcCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCargoActionPerformed(evt);
+                jcCargoActionPerformed(evt);
             }
         });
 
-        tfUsuario.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
-        tfUsuario.setText("Usuário:");
+        e.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        e.setText("Usuário:");
 
-        tfLogin4.setEnabled(false);
-        tfLogin4.addActionListener(new java.awt.event.ActionListener() {
+        tfUsuario.setEnabled(false);
+        tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLogin4ActionPerformed(evt);
+                tfUsuarioActionPerformed(evt);
             }
         });
 
@@ -178,29 +187,29 @@ public class TelaFuncionario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfNome)
+                                    .addComponent(a)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(tfCPF)))
+                                        .addComponent(b)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(tfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(tfSalario)
+                        .addComponent(c)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfLogin3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(cargo)
+                        .addComponent(d)
                         .addGap(18, 18, 18)
-                        .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(tfUsuario)
+                        .addComponent(e)
                         .addGap(18, 18, 18)
-                        .addComponent(tfLogin4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
@@ -223,25 +232,25 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNome))
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(a))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCPF))
+                    .addComponent(tfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfSalario)
-                    .addComponent(tfLogin3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(c)
+                    .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cargo)
-                    .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(d)
+                    .addComponent(jcCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfLogin4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(e, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -258,25 +267,25 @@ public class TelaFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLoginActionPerformed
 
-    private void tfLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLogin1ActionPerformed
+    private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfLogin1ActionPerformed
+    }//GEN-LAST:event_tfNomeActionPerformed
 
-    private void tfLogin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLogin2ActionPerformed
+    private void tfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCPFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfLogin2ActionPerformed
+    }//GEN-LAST:event_tfCPFActionPerformed
 
-    private void tfLogin3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLogin3ActionPerformed
+    private void tfSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSalarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfLogin3ActionPerformed
+    }//GEN-LAST:event_tfSalarioActionPerformed
 
-    private void tfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCargoActionPerformed
+    private void jcCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCargoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCargoActionPerformed
+    }//GEN-LAST:event_jcCargoActionPerformed
 
-    private void tfLogin4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLogin4ActionPerformed
+    private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfLogin4ActionPerformed
+    }//GEN-LAST:event_tfUsuarioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -293,14 +302,18 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(!tfNome.getText().isEmpty() && !tfCPF.getText().isEmpty() 
-                && tfSalario.getText().isEmpty() 
-                && tfUsuario.getText().isEmpty() 
-                && tfCargo.getSelectedItem().equals("Selecione")){
-            funcionario.setCargo(String.valueOf(tfCargo.getSelectedItem()));
+                && !tfSalario.getText().isEmpty() 
+                && !tfUsuario.getText().isEmpty() 
+                && !jcCargo.getSelectedItem().equals("Selecione")){
+            
+            funcionario.setCargo(String.valueOf(jcCargo.getSelectedItem()));
             funcionario.setCpf(tfCPF.getText());
             funcionario.setNomeFuncionario(tfNome.getText());
             funcionario.setSalario(Double.parseDouble(tfSalario.getText()));
-         
+            dao.salvar(funcionario);
+            limparCampos();
+        }else{
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -340,7 +353,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cargo;
+    private javax.swing.JLabel a;
+    private javax.swing.JLabel b;
+    private javax.swing.JLabel c;
+    private javax.swing.JLabel d;
+    private javax.swing.JLabel e;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -349,15 +366,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel tfCPF;
-    private javax.swing.JComboBox<String> tfCargo;
+    private javax.swing.JComboBox<String> jcCargo;
+    private javax.swing.JTextField tfCPF;
     private javax.swing.JTextField tfLogin;
-    private javax.swing.JTextField tfLogin1;
-    private javax.swing.JTextField tfLogin2;
-    private javax.swing.JTextField tfLogin3;
-    private javax.swing.JTextField tfLogin4;
-    private javax.swing.JLabel tfNome;
-    private javax.swing.JLabel tfSalario;
-    private javax.swing.JLabel tfUsuario;
+    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfSalario;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

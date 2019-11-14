@@ -8,6 +8,7 @@ package univs.edu.funcionario;
 import univs.edu.usuario.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -25,10 +26,13 @@ public class FuncionarioDAO {
        sessao = HibernateUtil.
                getSessionFactory().openSession();
        transacao = sessao.beginTransaction();
+       
        if(funcionario.getIdFuncionario() == 0) {
            sessao.save(funcionario);
+           JOptionPane.showMessageDialog(null, "Funcionário Cadastrado!");
        }else{
            editar(funcionario);
+           JOptionPane.showMessageDialog(null, "Funcionário Editado!");
        }
        transacao.commit();
        sessao.close();
