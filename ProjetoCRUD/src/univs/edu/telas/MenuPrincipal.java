@@ -5,17 +5,29 @@
  */
 package univs.edu.telas;
 
+import univs.edu.funcionario.Funcionario;
+
 /**
  *
  * @author LABORATORIO 01
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuPrincipal
-     */
-    public MenuPrincipal() {
+    Funcionario funcionario; 
+    
+    public MenuPrincipal(Funcionario funcionario) {
         initComponents();
+        this.funcionario = funcionario;
+    }
+
+    MenuPrincipal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void nivelAcesso() {
+        if(!funcionario.getCargo().equals("Administrador")) {
+            jmUsuario.setVisible(false);
+        }
     }
 
     /**
@@ -28,13 +40,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmUsuario = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Cadastros");
+        jmUsuario.setText("Cadastros");
 
         jMenuItem1.setText("Usuário");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -42,9 +55,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jmUsuario.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jMenuItem2.setText("Funcionário");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jmUsuario.add(jMenuItem2);
+
+        jMenuBar1.add(jmUsuario);
 
         jMenu2.setText("Sobre");
         jMenuBar1.add(jMenu2);
@@ -71,6 +92,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        TelaFuncionario tela = new TelaFuncionario();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,15 +128,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new MenuPrincipal(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu jmUsuario;
     // End of variables declaration//GEN-END:variables
 }
