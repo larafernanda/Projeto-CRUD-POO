@@ -18,6 +18,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal(Funcionario funcionario) {
         initComponents();
         this.funcionario = funcionario;
+        nivelAcesso();
     }
 
     MenuPrincipal() {
